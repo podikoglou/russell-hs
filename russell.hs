@@ -6,9 +6,7 @@ data ASTNode
   | Negation ASTNode
   | Conjunction ASTNode ASTNode
   | Disjunction ASTNode ASTNode
-  | -- | XOR ASTNode ASTNode
-    -- | Implication ASTNode ASTNode
-    Equality ASTNode ASTNode
+  | Equality ASTNode ASTNode
 
 type Assignments = Data.Map.Map Char Bool
 
