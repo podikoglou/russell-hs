@@ -1,12 +1,7 @@
-import Data.Map
+module Russell.Engine where
 
-data ASTNode
-  = Literal Bool
-  | Variable Char
-  | Negation ASTNode
-  | Conjunction ASTNode ASTNode
-  | Disjunction ASTNode ASTNode
-  | Equality ASTNode ASTNode
+import Data.Map
+import Russell.AST
 
 type Assignments = Data.Map.Map Char Bool
 
@@ -33,16 +28,3 @@ isContingency node =
   all
     (\l -> eval node l == Just False)
     (computeTruthTable node)
-
-ast =
-  Equality
-    ( Disjunction
-        (Variable 'p')
-        ( Conjunction
-            (Variable 'p')
-            (Variable 'q')
-        )
-    )
-    (Variable 'p')
-
-main = print (eval ast (Data.Map.fromList [('p', True), ('q', True)]))
